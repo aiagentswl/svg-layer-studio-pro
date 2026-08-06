@@ -4,7 +4,7 @@ import { useStudioStore } from '../store/useStudioStore';
 export const CanvasViewport: React.FC = () => {
   const { layers, selectedIds, zoom, viewMode, setViewMode } = useStudioStore();
 
-  const selectedLayers = selectedIds.map(id => layers[id]).filter(Boolean);
+  const selectedLayers = selectedIds.map((id) => layers[id]).filter(Boolean);
 
   const getBgStyle = () => {
     if (viewMode === 'dark') return 'bg-slate-950';
@@ -18,19 +18,25 @@ export const CanvasViewport: React.FC = () => {
       <div className="absolute top-4 right-4 z-10 flex gap-1 bg-slate-900/90 border border-slate-800 p-1 rounded-lg backdrop-blur">
         <button
           onClick={() => setViewMode('checker')}
-          className={`px-2.5 py-1 text-xs rounded ${viewMode === 'checker' ? 'bg-indigo-600 text-white' : 'text-slate-400'}`}
+          className={`px-2.5 py-1 text-xs rounded ${
+            viewMode === 'checker' ? 'bg-indigo-600 text-white' : 'text-slate-400'
+          }`}
         >
           Grid
         </button>
         <button
           onClick={() => setViewMode('dark')}
-          className={`px-2.5 py-1 text-xs rounded ${viewMode === 'dark' ? 'bg-indigo-600 text-white' : 'text-slate-400'}`}
+          className={`px-2.5 py-1 text-xs rounded ${
+            viewMode === 'dark' ? 'bg-indigo-600 text-white' : 'text-slate-400'
+          }`}
         >
           Dark
         </button>
         <button
           onClick={() => setViewMode('light')}
-          className={`px-2.5 py-1 text-xs rounded ${viewMode === 'light' ? 'bg-indigo-600 text-white' : 'text-slate-400'}`}
+          className={`px-2.5 py-1 text-xs rounded ${
+            viewMode === 'light' ? 'bg-indigo-600 text-white' : 'text-slate-400'
+          }`}
         >
           Light
         </button>
@@ -50,7 +56,7 @@ export const CanvasViewport: React.FC = () => {
             {selectedLayers.map((layer) => (
               <div
                 key={layer.id}
-                className="w-[450 h-[450px] flex items-center justify-center border border-slate-800/50 rounded"
+                className="w-[450px] h-[450px] flex items-center justify-center border border-slate-800/50 rounded"
                 dangerouslySetInnerHTML={{ __html: layer.currentSvg }}
               />
             ))}
